@@ -1,5 +1,8 @@
 let map;
-let marker;
+
+const pins = [
+	[14.60025964945535, 121.01280499614454],
+];
 
 // initialize and add the map
 async function initMap() {
@@ -12,10 +15,12 @@ async function initMap() {
 		zoom: 19,
 		mapId: '26050be015b4cb2d'
 	});
-	
-	marker = new AdvancedMarkerElement({
-		map,
-		position: { lat: 14.60025964945535, lng: 121.01280499614454 },
-		content: new PinElement({glyph: "Test"}).element,
-	});
+
+	for (const coords of pins) {
+		new AdvancedMarkerElement({
+			map,
+			position: { lat: coords[0], lng: coords[1] },
+			content: new PinElement({glyph: "Test"}).element,
+		});
+	}
 }
