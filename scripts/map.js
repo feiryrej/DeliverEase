@@ -4,7 +4,7 @@ let marker;
 // initialize and add the map
 async function initMap() {
 	const { Map } = await google.maps.importLibrary("maps");
-	const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+	const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
 
 	// display a map on the webpage
 	map = new Map(document.getElementById("map"), {
@@ -15,6 +15,7 @@ async function initMap() {
 	
 	marker = new AdvancedMarkerElement({
 		map,
-		position: { lat: 14.600155451725184, lng: 121.01288018643108}
+		position: { lat: 14.60025964945535, lng: 121.01280499614454 },
+		content: new PinElement({glyph: "Test"}).element,
 	});
 }
