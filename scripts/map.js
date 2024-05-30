@@ -1,5 +1,10 @@
 let map;
 
+const pins = [
+	["1", 14.60053, 121.0161062],
+	["2", 14.6024859, 121.0144928],
+];
+
 // Initialize and add the map
 async function initMap() {
 	const { Map } = await google.maps.importLibrary("maps");
@@ -11,6 +16,18 @@ async function initMap() {
 		zoom: 18,
 		mapId: "26050be015b4cb2d"
 	});
+
+	for (const pin of pins) {
+		const p = document.createElement("p");
+		p.textContent = pin[0];
+		p.classList.add("pin-text");
+
+		new AdvancedMarkerElement({
+			map,
+			position: { lat: pin[1], lng: pin[2] },
+			content: new PinElement({glyph: p}).element,
+		});
+	}
 
 	// Fetch intersections and add markers
 	fetchIntersections()
@@ -37,7 +54,7 @@ async function fetchIntersections() {
 	const overpassQuery = `
 		[out:json];
 		(
-			way["highway"~"^(residential)$"](14.5886,121.0091,14.6037,121.0250);
+			way["highway"~"^(residential)$"](14.60073,121.01498,14.60181,121.01652);
 		);
 		node(w)->.nodes;
 		node.nodes;
