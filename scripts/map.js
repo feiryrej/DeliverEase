@@ -1,8 +1,8 @@
 let map, directionsService, directionsRenderer;
 
 const pins = [
-	["1", 14.60053, 121.0161062],
-	["2", 14.6024859, 121.0144928],
+	["1", 14.602415996238568, 121.01339990672079],
+	["2", 14.602535392412314, 121.01306194839161],
 ];
 
 // Initialize and add the map
@@ -81,13 +81,23 @@ async function fetchIntersections() {
 
 // Diplay route on map
 async function displayRoute() {
-	var source = new google.maps.LatLng(14.602234475186766, 121.01607080985588);
-	var dest = new google.maps.LatLng(14.600990762215977, 121.01645509123978);
+	var source = new google.maps.LatLng(14.6024859, 121.0144928);
+	var dest = new google.maps.LatLng(14.600562, 121.016258);
+	const waypoints = [
+		{ location: { lat: 14.6020164, lng: 121.0148254 } },
+		{ location: { lat: 14.6020544, lng: 121.0161141 } },
+		{ location: { lat: 14.6017461, lng: 121.016208 } },
+		{ location: { lat: 14.60107, lng: 121.0151278 } },
+		{ location: { lat: 14.6007624, lng: 121.0153825 } },
+		{ location: { lat: 14.6006115, lng: 121.0155916 } },
+		{ location: { lat: 14.6005322, lng: 121.0157907 } }
+	];
 	
 	let request = {
 		origin: source,
 		destination: dest,
-		travelMode: "DRIVING",
+		waypoints: waypoints,
+		travelMode: "WALKING",
 	}
 	
 	directionsService.route(request, function(result, status) {
