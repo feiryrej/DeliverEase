@@ -36,7 +36,24 @@ const orders = [
 
 class Deliveries {
     display(element) {
+        const deliveryContainer = document.createElement("div");
+        let innerHTML = "";
 
+        for (const delivery of this.getDeliveries()) {
+            innerHTML += `
+                <div>
+                    <span>ORDER ID: ${delivery["order_id"]}</span>
+                    <br />
+                    <span>${delivery["address"]["street"]}</span>
+                    <br />
+                    <span>${delivery["address"]["city_province"]}</span>
+                </div>
+                <hr style="margin: 10px 0;" />
+            `;
+        }
+
+        deliveryContainer.innerHTML = innerHTML;
+        element.appendChild(deliveryContainer);
     }
 
     getDefaultDeliveries() {
