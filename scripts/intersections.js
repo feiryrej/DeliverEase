@@ -11,13 +11,14 @@ async function fetchIntersections() {
 		out qt;
 	`;
 
-	const response = await fetch(overpassUrl, {
-		method: 'POST',
-		body: new URLSearchParams({
-			data: overpassQuery
-		})
-	});
+	// const response = await fetch(overpassUrl, {
+	// 	method: 'POST',
+	// 	body: new URLSearchParams({
+	// 		data: overpassQuery
+	// 	})
+	// });
+	// const data = await response.json();
 
-	const data = await response.json();
+	data = intersectionsData;
 	return data.elements.filter(element => element.type === 'node');
 }
