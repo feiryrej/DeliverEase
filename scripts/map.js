@@ -32,6 +32,7 @@ async function initMap(address) {
 
 	setupSearchBox(map, address);
 	intersections = await fetchIntersections();
+	document.querySelector("#preloader").remove();
 
 	// Display route using A* algorithm
 	await displayRoute(source, intersections);
