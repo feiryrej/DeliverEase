@@ -53,9 +53,12 @@ function setupSearchBox(map, initialValue) {
 
 	// Listen for the event fired when the user selects a prediction and retrieve
 	// more details for that place.
-	searchBox.addListener("places_changed", () => {
+	searchBox.addListener("places_changed", async () => {
 		const places = searchBox.getPlaces();
 		if (places.length == 0) return;
+
+		// Update route when the place is changed
+		await displayRoute(parsePlaceData(places[0]), intersections);
 
 		// Clear out the old markers.
 		markers.forEach((marker) => {
