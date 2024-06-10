@@ -67,6 +67,20 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+.floating-panel > .add-delivery > button {
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+.floating-panel > .add-delivery > button:active {
+    background-color: rgba(202, 202, 202, 0.46);
+}
+
+.floating-panel label {
+    margin-right: 10px;
+}
+
 .floating-panel input {
     font-size: 1rem;
     border: none;
@@ -75,6 +89,7 @@ body {
     font-weight: 400;
     border-radius: 5px;
     padding: 5px;
+    width: 55%;
 }
 .floating-panel input:focus {
     outline: none;

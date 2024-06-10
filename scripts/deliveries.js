@@ -81,8 +81,11 @@ class Deliveries {
     }
 
     addDelivery() {
-        const orderID = document.querySelector(".floating-panel input").value;
+        const input = document.querySelector(".floating-panel input");
+        const orderID = input.value;
         const deliveries = this.getDeliveries();
+
+        input.value = "";
 
         for (const order of orders) {
             if (order["order_id"] === orderID) {
