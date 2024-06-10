@@ -85,8 +85,9 @@ body {
 }
 
 .pin-text {
-    color: white;
+    color: #ea4335;
     font-size: 1.2rem;
+    margin-top: -25px;
 }
 
 .float-effect {

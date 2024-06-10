@@ -6,10 +6,11 @@ class Deliveries {
     display() {
         this.container.innerHTML = "";
 
+        const deliveriesData = this.getDeliveries();
         const deliveryContainer = document.createElement("div");
         let innerHTML = "";
 
-        for (const delivery of Object.values(this.getDeliveries())) {
+        for (const delivery of Object.values(deliveriesData)) {
             innerHTML += `
                 <div>
                     <span>ORDER ID: ${delivery["order_id"]}</span>
@@ -24,6 +25,7 @@ class Deliveries {
 
         deliveryContainer.innerHTML = innerHTML;
         this.container.appendChild(deliveryContainer);
+        displayDeliveryPins(deliveriesData);
     }
 
     getDefaultDeliveries() {
