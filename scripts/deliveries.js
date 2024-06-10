@@ -35,7 +35,13 @@ const orders = [
 ];
 
 class Deliveries {
-    display(element) {
+    constructor(container) {
+        this.container = container;
+    }
+
+    display() {
+        this.container.innerHTML = "";
+
         const deliveryContainer = document.createElement("div");
         let innerHTML = "";
 
@@ -53,7 +59,7 @@ class Deliveries {
         }
 
         deliveryContainer.innerHTML = innerHTML;
-        element.appendChild(deliveryContainer);
+        this.container.appendChild(deliveryContainer);
     }
 
     getDefaultDeliveries() {
@@ -75,6 +81,17 @@ class Deliveries {
     }
 
     addDelivery() {
+        const orderID = document.querySelector(".floating-panel input").value;
         const deliveries = this.getDeliveries();
+
+        for (const order of orders) {
+            if (order["order_id"] === orderID) {
+                deliveries.push(order);
+                break;
+            }
+        }
+
+        localStorage.setItem("deliveries", JSON.stringify(deliveries));
+        this.display();
     }
 }
