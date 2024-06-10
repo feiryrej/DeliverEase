@@ -97,4 +97,9 @@ class Deliveries {
         localStorage.setItem("deliveries", JSON.stringify(deliveries));
         this.display();
     }
+
+    reset() {
+        localStorage.removeItem("deliveries");
+        this.display();
+    }
 }
