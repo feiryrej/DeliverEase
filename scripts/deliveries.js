@@ -1,5 +1,5 @@
-const orders = [
-    {
+const orders = {
+    "2406069U1PVRCM": {
         "order_id": "2406069U1PVRCM",
         "address": {
             "street": "790-872 Roxas, Sampaloc, Maynila, 1008 Kalakhang Maynila",
@@ -10,7 +10,7 @@ const orders = [
             "longitude": 121.009139
         }
     },
-    {
+    "2406069SNCT2Q6": {
         "order_id": "2406069SNCT2Q6",
         "address": {
             "street": "898-994 Bohol, Sampaloc, Maynila, 1008 Kalakhang Maynila",
@@ -21,7 +21,7 @@ const orders = [
             "longitude": 121.00722152922441
         }
     },
-    {
+    "240528H1NP8TQS": {
         "order_id": "240528H1NP8TQS",
         "address": {
             "street": "Unang Hakbang, Lungsod Quezon, Kalakhang Maynila",
@@ -31,8 +31,8 @@ const orders = [
             "latitude": 14.609970,
             "longitude": 121.011379
         }
-    }
-];
+    },
+};
 
 class Deliveries {
     constructor(container) {
@@ -45,7 +45,7 @@ class Deliveries {
         const deliveryContainer = document.createElement("div");
         let innerHTML = "";
 
-        for (const delivery of this.getDeliveries()) {
+        for (const delivery of Object.values(this.getDeliveries())) {
             innerHTML += `
                 <div>
                     <span>ORDER ID: ${delivery["order_id"]}</span>
@@ -63,16 +63,10 @@ class Deliveries {
     }
 
     getDefaultDeliveries() {
-        const order_ids = ["2406069U1PVRCM", "2406069SNCT2Q6"];
-        const res = [];
-
-        for (const order of orders) {
-            if (order_ids.includes(order["order_id"])) {
-                res.push(order);
-            }
-        }
-
-        return res;
+        return {
+            "2406069U1PVRCM": orders["2406069U1PVRCM"],
+            "2406069SNCT2Q6": orders["2406069SNCT2Q6"],
+        };
     }
 
     getDeliveries() {
@@ -87,11 +81,8 @@ class Deliveries {
 
         input.value = "";
 
-        for (const order of orders) {
-            if (order["order_id"] === orderID) {
-                deliveries.push(order);
-                break;
-            }
+        if (orders[orderID] !== undefined) {
+            deliveries[orderID] = orders[orderID];
         }
 
         localStorage.setItem("deliveries", JSON.stringify(deliveries));
