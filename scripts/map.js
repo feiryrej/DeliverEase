@@ -5,14 +5,23 @@ const pins = [
 	["2", 14.602535392412314, 121.01306194839161],
 ];
 
+async function getCoordinates(address) {
+	const geocoder = new google.maps.Geocoder();
+	const res = await geocoder.geocode({ "address": address });
+	const geometry = res["results"][0]["geometry"]["location"];
+	const lat = geometry["lat"]();
+	const lng = geometry["lng"]();
+	return { lat: lat, lng: lng };
+}
+
 // Initialize and add the map
-async function initMap() {
+async function initMap(address) {
 	const { Map } = await google.maps.importLibrary("maps");
 	const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
 
 	// Display a map on the webpage
 	map = new Map(document.getElementById("map"), {
-		center: { lat: 14.6018052, lng: 121.0173145 },
+		center: await getCoordinates(address),
 		zoom: 18,
 		mapId: "26050be015b4cb2d"
 	});
