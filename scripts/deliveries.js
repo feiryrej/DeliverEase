@@ -1,39 +1,3 @@
-const orders = {
-    "2406069U1PVRCM": {
-        "order_id": "2406069U1PVRCM",
-        "address": {
-            "street": "790-872 Roxas, Sampaloc, Maynila, 1008 Kalakhang Maynila",
-            "city_province": "Manila, Metro Manila"
-        },
-        "coordinates": {
-            "latitude": 14.609489,
-            "longitude": 121.009139
-        }
-    },
-    "2406069SNCT2Q6": {
-        "order_id": "2406069SNCT2Q6",
-        "address": {
-            "street": "898-994 Bohol, Sampaloc, Maynila, 1008 Kalakhang Maynila",
-            "city_province": "Manila, Metro Manila"
-        },
-        "coordinates": {
-            "latitude": 14.60968045029885,
-            "longitude": 121.00722152922441
-        }
-    },
-    "240528H1NP8TQS": {
-        "order_id": "240528H1NP8TQS",
-        "address": {
-            "street": "Unang Hakbang, Lungsod Quezon, Kalakhang Maynila",
-            "city_province": "Quezon City, Metro Manila"
-        },
-        "coordinates": {
-            "latitude": 14.609970,
-            "longitude": 121.011379
-        }
-    },
-};
-
 class Deliveries {
     constructor(container) {
         this.container = container;
@@ -65,7 +29,7 @@ class Deliveries {
     getDefaultDeliveries() {
         return {
             "2406069U1PVRCM": orders["2406069U1PVRCM"],
-            "2406069SNCT2Q6": orders["2406069SNCT2Q6"],
+            "240528H1NP8TQS": orders["240528H1NP8TQS"],
         };
     }
 
