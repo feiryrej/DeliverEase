@@ -4,7 +4,7 @@ async function fetchIntersections() {
 	const overpassQuery = `
 		[out:json];
 		(
-			way["highway"~"^(residential)$"](14.6035, 121.0011, 14.6154, 121.0144);
+			way["highway"~"^(residential)$"](14.5128, 120.9713, 14.6218, 121.1749);
 		);
 		node(w)->.nodes;
 		node.nodes;

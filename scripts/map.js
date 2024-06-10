@@ -1,4 +1,4 @@
-let map, directionsService, directionsRenderer;
+let map, directionsService, directionsRenderer, intersections;
 
 async function getCoordinates(address) {
 	const geocoder = new google.maps.Geocoder();
@@ -27,8 +27,7 @@ async function initMap(address) {
 	directionsRenderer.setMap(map);
 
 	setupSearchBox(map, address);
-
-	const intersections = await fetchIntersections();
+	intersections = await fetchIntersections();
 
 	// Display route using A* algorithm
 	await displayRoute(source, intersections);
