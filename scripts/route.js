@@ -10,7 +10,7 @@ async function displayDeliveryPins(deliveriesData) {
 
 	deliveryPins = [];
 
-	for (const delivery of Object.values(deliveriesData)) {
+	for (const delivery of deliveriesData) {
 		const p = document.createElement("p");
 		p.textContent = delivery["order_id"];
 		p.classList.add("pin-text");
@@ -29,8 +29,17 @@ async function displayDeliveryPins(deliveriesData) {
 
 // Display route on map
 async function displayRoute(source, intersections) {
-	const deliveriesData = deliveries.getDeliveries();
-	const dest = {lat: 14.610968633422495, lng: 121.00945973918806};
+	intersections = intersections.map((intersection) => {
+		intersection.lng = intersection.lon;
+		return intersection;
+	});
+
+	const deliveriesData = Object.values(deliveries.getDeliveries());
+	const lastDeliveryData = deliveriesData[deliveriesData.length - 1];
+	const dest = {
+		lat: lastDeliveryData["coordinates"]["latitude"],
+		lng: lastDeliveryData["coordinates"]["longitude"]
+	};
 	const path = aStar(source, dest, intersections);
 
 	displayDeliveryPins(deliveriesData);
