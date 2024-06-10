@@ -12,8 +12,6 @@ async function getCoordinates(address) {
 // Initialize and add the map
 async function initMap(address) {
 	const { Map } = await google.maps.importLibrary("maps");
-	const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
-
 	const source = await getCoordinates(address);
 
 	// Display a map on the webpage
@@ -33,7 +31,7 @@ async function initMap(address) {
 	const intersections = await fetchIntersections();
 
 	// Display route using A* algorithm
-	await displayRoute(intersections);
+	await displayRoute(source, intersections);
 }
 
 function setupSearchBox(map) {
