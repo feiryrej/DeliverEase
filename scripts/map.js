@@ -1,12 +1,16 @@
 let map, directionsService, directionsRenderer, intersections;
 
-async function getCoordinates(address) {
-	const geocoder = new google.maps.Geocoder();
-	const res = await geocoder.geocode({ "address": address });
-	const geometry = res["results"][0]["geometry"]["location"];
+function parsePlaceData(data) {
+	const geometry = data["geometry"]["location"];
 	const lat = geometry["lat"]();
 	const lng = geometry["lng"]();
 	return { lat: lat, lng: lng };
+}
+
+async function getCoordinates(address) {
+	const geocoder = new google.maps.Geocoder();
+	const res = await geocoder.geocode({ "address": address });
+	return parsePlaceData(res["results"][0]);
 }
 
 // Initialize and add the map
@@ -51,10 +55,7 @@ function setupSearchBox(map, initialValue) {
 	// more details for that place.
 	searchBox.addListener("places_changed", () => {
 		const places = searchBox.getPlaces();
-
-		if (places.length == 0) {
-		return;
-		}
+		if (places.length == 0) return;
 
 		// Clear out the old markers.
 		markers.forEach((marker) => {
