@@ -40,7 +40,7 @@ async function displayRoute(source, intersections) {
 		lat: lastDeliveryData["coordinates"]["latitude"],
 		lng: lastDeliveryData["coordinates"]["longitude"]
 	};
-	const path = aStar(source, dest, intersections);
+	const path = [];  //aStar(source, dest, intersections);
 
 	displayDeliveryPins(deliveriesData);
 
