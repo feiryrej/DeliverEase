@@ -18,6 +18,8 @@ async function main() {
 
 	await initMap(defaultLocation);
 	deliveries.display();
+
+	document.querySelector("#preloader").remove();
 }
 
 main();
