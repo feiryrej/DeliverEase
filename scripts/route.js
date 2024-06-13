@@ -27,10 +27,55 @@ async function displayDeliveryPins(deliveriesData) {
 	}
 }
 
+function addDeliveriesToIntersections(deliveriesData, intersections) {
+	for (const delivery of deliveriesData) {
+		const distances = {};
+
+		for (const node of Object.keys(intersections)) {
+			const nodeJSON = JSON.parse(node);
+			const distance = haversine(
+				delivery["coordinates"]["latitude"],
+				delivery["coordinates"]["longitude"],
+				nodeJSON["lat"],
+				nodeJSON["lng"],
+			);
+			distances[distance] = nodeJSON;
+		}
+
+		const lowestDistance = Math.min(...Object.keys(distances));
+		intersections[JSON.stringify({
+			lat: delivery["coordinates"]["latitude"],
+			lng: delivery["coordinates"]["longitude"]
+		})] = [distances[lowestDistance]];
+	}
+}
+
+function addSourceToIntersections(source, intersections) {
+	const distances = {};
+
+	for (const node of Object.keys(intersections)) {
+		const nodeJSON = JSON.parse(node);
+		const distance = haversine(
+			source["lat"],
+			source["lng"],
+			nodeJSON["lat"],
+			nodeJSON["lng"],
+		);
+		distances[distance] = nodeJSON;
+	}
+
+	const lowestDistance = Math.min(...Object.keys(distances));
+	intersections[JSON.stringify(source)] = [distances[lowestDistance]];
+}
+
 // Display route on map
 async function displayRoute(source) {
 	const intersections = getIntersections();
 	const deliveriesData = Object.values(deliveries.getDeliveries());
+
+	addDeliveriesToIntersections(deliveriesData, intersections);
+	addSourceToIntersections(source, intersections);
+
 	const lastDeliveryData = deliveriesData[deliveriesData.length - 1];
 	const dest = {
 		lat: lastDeliveryData["coordinates"]["latitude"],
