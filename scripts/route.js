@@ -28,14 +28,15 @@ async function displayDeliveryPins(deliveriesData) {
 }
 
 // Display route on map
-async function displayRoute(source, intersections) {
+async function displayRoute(source) {
+	const intersections = getIntersections();
 	const deliveriesData = Object.values(deliveries.getDeliveries());
 	const lastDeliveryData = deliveriesData[deliveriesData.length - 1];
 	const dest = {
 		lat: lastDeliveryData["coordinates"]["latitude"],
 		lng: lastDeliveryData["coordinates"]["longitude"]
 	};
-	const path = [];  //aStar(source, dest, intersections);
+	const path = aStar(source, dest, intersections);
 
 	displayDeliveryPins(deliveriesData);
 

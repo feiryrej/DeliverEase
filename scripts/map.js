@@ -1,4 +1,4 @@
-let map, directionsService, directionsRenderer, intersections;
+let map, directionsService, directionsRenderer;
 
 function parsePlaceData(data) {
 	const geometry = data["geometry"]["location"];
@@ -31,10 +31,9 @@ async function initMap(address) {
 	directionsRenderer.setMap(map);
 
 	setupSearchBox(map, address);
-	intersections = getIntersections();
 
 	// Display route using A* algorithm
-	await displayRoute(source, intersections);
+	await displayRoute(source);
 }
 
 function setupSearchBox(map, initialValue) {
