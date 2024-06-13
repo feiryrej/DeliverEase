@@ -75,7 +75,7 @@ function addSourceToIntersections(source, intersections) {
 }
 
 // Display route on map
-async function displayRoute(source) {
+async function displayRoute(source, isOptimized) {
 	const intersections = getIntersections();
 	const deliveriesData = Object.values(deliveries.getDeliveries());
 
@@ -87,27 +87,30 @@ async function displayRoute(source) {
 		lat: lastDeliveryData["coordinates"]["latitude"],
 		lng: lastDeliveryData["coordinates"]["longitude"]
 	};
-	const [paths, winner] = aStar(source, dest, intersections);
 
-	const polylineOptions = {
-		geodesic: true,
-		strokeColor: "#FF0000",
-		strokeOpacity: 0.6,
-		strokeWeight: 4
-	};
-	let prevNode = winner;
+	if (isOptimized) {
+		const [paths, winner] = aStar(source, dest, intersections);
 
-	new google.maps.Polyline({
-		...polylineOptions,
-		path: [dest, json(prevNode)],
-	}).setMap(map);
+		const polylineOptions = {
+			geodesic: true,
+			strokeColor: "#FF0000",
+			strokeOpacity: 0.6,
+			strokeWeight: 4
+		};
+		let prevNode = winner;
 
-	while (paths[prevNode] !== undefined) {
 		new google.maps.Polyline({
 			...polylineOptions,
-			path: [json(prevNode), json(paths[prevNode])],
+			path: [dest, json(prevNode)],
 		}).setMap(map);
-		prevNode = paths[prevNode];
+
+		while (paths[prevNode] !== undefined) {
+			new google.maps.Polyline({
+				...polylineOptions,
+				path: [json(prevNode), json(paths[prevNode])],
+			}).setMap(map);
+			prevNode = paths[prevNode];
+		}
 	}
 
 	displayDeliveryPins(deliveriesData);

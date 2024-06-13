@@ -33,7 +33,7 @@ async function initMap(address) {
 	setupSearchBox(map, address);
 
 	// Display route using A* algorithm
-	await displayRoute(source);
+	await displayRoute(source, false);
 }
 
 function setupSearchBox(map, initialValue) {
