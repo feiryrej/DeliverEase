@@ -74,6 +74,16 @@ function addSourceToIntersections(source, intersections) {
 	connectNodes(intersections, node, JSON.stringify(distances[lowestDistance]));
 }
 
+let polylines = [];
+
+function clearPolylines() {
+	for (const line of polylines) {
+		line.setMap(null);
+	}
+
+	polylines = [];
+}
+
 // Display route on map
 async function displayRoute(source, isOptimized) {
 	const intersections = getIntersections();
@@ -88,6 +98,7 @@ async function displayRoute(source, isOptimized) {
 	addDeliveriesToIntersections(deliveriesData, intersections);
 	addSourceToIntersections(source, intersections);
 	displayDeliveryPins(deliveriesData);
+	clearPolylines();
 
 	for (const delivery of deliveriesData) {
 		const dest = {
@@ -117,6 +128,7 @@ async function displayRoute(source, isOptimized) {
 		);
 
 		const polylineOptions = {
+			map: map,
 			geodesic: true,
 			strokeColor: i === 1 ? "#00FF00" : "#FF0000",
 			strokeOpacity: 0.6,
@@ -125,16 +137,16 @@ async function displayRoute(source, isOptimized) {
 
 		let prevNode = winner;
 
-		new google.maps.Polyline({
+		polylines.push(new google.maps.Polyline({
 			...polylineOptions,
 			path: [json(prevNode), json(stop.node)],
-		}).setMap(map);
+		}));
 
 		while (paths[prevNode] !== undefined) {
-			new google.maps.Polyline({
+			polylines.push(new google.maps.Polyline({
 				...polylineOptions,
 				path: [json(prevNode), json(paths[prevNode])],
-			}).setMap(map);
+			}));
 			prevNode = paths[prevNode];
 		}
 	}
