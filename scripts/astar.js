@@ -26,7 +26,9 @@ function getNodeWithLowestFScore(openList, fScore) {
 }
 
 function weight(current, neighbor) {
-    return 1;
+    current = json(current);
+    neighbor = json(neighbor);
+    return haversine(current.lat, current.lng, neighbor.lat, neighbor.lng);
 }
 
 function aStar(start, goal, graph) {
