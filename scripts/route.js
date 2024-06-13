@@ -91,14 +91,9 @@ async function displayRoute(source) {
 
 	displayDeliveryPins(deliveriesData);
 
-	const waypoints = path.map(intersection => ({
-		location: { lat: intersection.lat, lng: intersection.lon }
-	}));
-
 	const request = {
 		origin: source,
 		destination: dest,
-		waypoints: waypoints,
 		travelMode: "DRIVING",
 	};
 
