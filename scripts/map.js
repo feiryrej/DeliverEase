@@ -1,4 +1,4 @@
-let map, source, directionsService;
+let map, source;
 
 function parsePlaceData(data) {
 	const geometry = data["geometry"]["location"];
@@ -24,9 +24,6 @@ async function initMap(address) {
 		zoom: 18,
 		mapId: "26050be015b4cb2d"
 	});
-
-	// Initialize Google Maps API's Directions Service
-	directionsService = new google.maps.DirectionsService();
 
 	setupSearchBox(map, address);
 
@@ -56,7 +53,7 @@ function setupSearchBox(map, initialValue) {
 
 		// Update route when the place is changed
 		source = parsePlaceData(places[0]);
-		await displayRoute(source, intersections);
+		await displayRoute(source, false);
 
 		// Clear out the old markers.
 		markers.forEach((marker) => {

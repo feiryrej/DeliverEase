@@ -102,19 +102,6 @@ async function displayRoute(source, isOptimized) {
 				fScore: fScore
 			});
 		}
-
-		directionsService.route(
-			{
-				origin: source,
-				destination: dest,
-				travelMode: "DRIVING",
-			},
-			function (result, status) {
-				if (status == "OK") {
-					new google.maps.DirectionsRenderer({map: map}).setDirections(result);
-				}
-			}
-		);
 	}
 
 	stops = stops.sort((a, b) => a.fScore - b.fScore);
