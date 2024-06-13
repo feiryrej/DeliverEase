@@ -1,4 +1,13 @@
+let markers = [];
 let deliveryPins = [];
+
+function clearMarkers() {
+	for (let i = 0; i < markers.length; i++) {
+		markers[i].setMap(null);
+	}
+
+	markers = [];
+}
 
 async function displayDeliveryPins(deliveriesData) {
 	const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
@@ -97,8 +106,11 @@ async function displayRoute(source, isOptimized) {
 
 	addDeliveriesToIntersections(deliveriesData, intersections);
 	addSourceToIntersections(source, intersections);
-	displayDeliveryPins(deliveriesData);
+	await displayDeliveryPins(deliveriesData);
 	clearPolylines();
+	clearMarkers();
+
+	markers.push(new google.maps.Marker({ map, position: source }));
 
 	for (const delivery of deliveriesData) {
 		const dest = {
