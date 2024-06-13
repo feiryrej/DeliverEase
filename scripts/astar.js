@@ -30,7 +30,9 @@ function weight(current, neighbor) {
 }
 
 function aStar(start, goal, graph) {
-    const heuristic = haversine;
+    const heuristic = (lat, lng) => {
+        return haversine(lat, lng, goal.lat, goal.lng);
+    };
     const openList = [str(start)];
     const cameFrom = {};
 
@@ -38,7 +40,7 @@ function aStar(start, goal, graph) {
     gScore[str(start)] = 0;
 
     const fScore = new DefaultDict(Infinity);
-    fScore[str(start)] = heuristic(start.lat, start.lng, goal.lat, goal.lng);
+    fScore[str(start)] = heuristic(start.lat, start.lng);
 
     while (openList.length > 0) {
         const current = getNodeWithLowestFScore(openList, fScore);
@@ -57,8 +59,6 @@ function aStar(start, goal, graph) {
                 cameFrom[neighbor] = current;
                 gScore[neighbor] = tentative_gScore;
                 fScore[neighbor] = tentative_gScore + heuristic(
-                    json(current).lat,
-                    json(current).lng,
                     json(neighbor).lat,
                     json(neighbor).lng
                 );
