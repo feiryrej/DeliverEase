@@ -29,11 +29,6 @@ async function displayDeliveryPins(deliveriesData) {
 
 // Display route on map
 async function displayRoute(source, intersections) {
-	intersections = intersections.map((intersection) => {
-		intersection.lng = intersection.lon;
-		return intersection;
-	});
-
 	const deliveriesData = Object.values(deliveries.getDeliveries());
 	const lastDeliveryData = deliveriesData[deliveriesData.length - 1];
 	const dest = {

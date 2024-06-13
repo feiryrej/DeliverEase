@@ -31,7 +31,7 @@ async function initMap(address) {
 	directionsRenderer.setMap(map);
 
 	setupSearchBox(map, address);
-	intersections = await fetchIntersections();
+	intersections = getIntersections();
 
 	// Display route using A* algorithm
 	await displayRoute(source, intersections);

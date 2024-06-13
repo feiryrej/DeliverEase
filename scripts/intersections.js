@@ -1,24 +1,38 @@
-// Fetch the data from Overpass API
-async function fetchIntersections() {
-	const overpassUrl = "http://overpass-api.de/api/interpreter";
-	const overpassQuery = `
-		[out:json];
-		(
-			way["highway"~"^(residential)$"](14.5128, 120.9713, 14.6218, 121.1749);
-		);
-		node(w)->.nodes;
-		node.nodes;
-		out qt;
-	`;
+function getIntersections() {
+	const nodes = {};
+	const intersections = {};
 
-	// const response = await fetch(overpassUrl, {
-	// 	method: 'POST',
-	// 	body: new URLSearchParams({
-	// 		data: overpassQuery
-	// 	})
-	// });
-	// const data = await response.json();
+	for (const item of overpassAPIData["elements"]) {
+		if (item["type"] === "node") {
+			nodes[item["id"]] = {
+				"lat": item["lat"],
+				"lon": item["lon"]
+			};
+		}
 
-	data = intersectionsData;
-	return data.elements.filter(element => element.type === 'node');
+		else if (item["type"] === "way") {
+			for (let i = 0; i < item["nodes"].length; i++) {
+				const node = item["nodes"][i];
+				const n1 = item["nodes"][i - 1];
+				const n2 = item["nodes"][i + 1];
+
+				for (const n of [n1, n2]) {
+					if (n !== undefined) {
+						if (intersections[node] === undefined) {
+							intersections[node] = [];
+						}
+
+						intersections[node].push(n);
+					}
+				}
+			}
+		}
+	}
+
+	for (const [key, value] of Object.entries(intersections)) {
+		intersections[JSON.stringify(nodes[key])] = value.map(nodeID => nodes[nodeID]);
+		delete intersections[key];
+	}
+
+	return intersections;
 }
