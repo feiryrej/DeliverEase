@@ -118,6 +118,39 @@ async function displayRoute(source, isOptimized) {
 	}
 
 	stops = stops.sort((a, b) => a.fScore - b.fScore);
+
+	for (let i = 1; i < stops.length; i++) {
+		const stop = stops[i];
+		const lastStop = stops[i - 1];
+
+		const [paths, winner, fScore] = aStar(
+			json(lastStop.node),
+			json(stop.node),
+			intersections
+		);
+
+		const polylineOptions = {
+			geodesic: true,
+			strokeColor: i === 1 ? "#00FF00" : "#FF0000",
+			strokeOpacity: 0.6,
+			strokeWeight: 4
+		};
+
+		let prevNode = winner;
+
+		new google.maps.Polyline({
+			...polylineOptions,
+			path: [json(prevNode), json(stop.node)],
+		}).setMap(map);
+
+		while (paths[prevNode] !== undefined) {
+			new google.maps.Polyline({
+				...polylineOptions,
+				path: [json(prevNode), json(paths[prevNode])],
+			}).setMap(map);
+			prevNode = paths[prevNode];
+		}
+	}
 }
 
 function haversine(lat1, lon1, lat2, lon2) {
