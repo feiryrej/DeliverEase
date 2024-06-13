@@ -6,7 +6,7 @@ function getIntersections() {
 		if (item["type"] === "node") {
 			nodes[item["id"]] = {
 				"lat": item["lat"],
-				"lon": item["lon"]
+				"lng": item["lon"]
 			};
 		}
 
