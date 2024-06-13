@@ -48,7 +48,7 @@ function aStar(start, goal, graph) {
         const current = getNodeWithLowestFScore(openList, fScore);
 
         if (current === str(goal)) {
-            return [cameFrom, cameFrom[str(goal)]];
+            return [cameFrom, cameFrom[str(goal)], fScore[current]];
         }
 
         openList.splice(openList.indexOf(current), 1);

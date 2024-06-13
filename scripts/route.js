@@ -90,8 +90,7 @@ async function displayRoute(source, isOptimized) {
 		};
 
 		if (isOptimized) {
-			const [paths, winner] = aStar(source, dest, intersections);
-
+			const [paths, winner, fScore] = aStar(source, dest, intersections);
 			const polylineOptions = {
 				geodesic: true,
 				strokeColor: "#FF0000",
