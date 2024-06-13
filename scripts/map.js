@@ -1,4 +1,4 @@
-let map, directionsService, directionsRenderer;
+let map, source, directionsService, directionsRenderer;
 
 function parsePlaceData(data) {
 	const geometry = data["geometry"]["location"];
@@ -16,7 +16,7 @@ async function getCoordinates(address) {
 // Initialize and add the map
 async function initMap(address) {
 	const { Map } = await google.maps.importLibrary("maps");
-	const source = await getCoordinates(address);
+	source = await getCoordinates(address);
 
 	// Display a map on the webpage
 	map = new Map(document.getElementById("map"), {
@@ -57,7 +57,8 @@ function setupSearchBox(map, initialValue) {
 		if (places.length == 0) return;
 
 		// Update route when the place is changed
-		await displayRoute(parsePlaceData(places[0]), intersections);
+		source = parsePlaceData(places[0]);
+		await displayRoute(source, intersections);
 
 		// Clear out the old markers.
 		markers.forEach((marker) => {
