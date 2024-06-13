@@ -43,10 +43,13 @@ function addDeliveriesToIntersections(deliveriesData, intersections) {
 		}
 
 		const lowestDistance = Math.min(...Object.keys(distances));
-		intersections[JSON.stringify({
+		const node = JSON.stringify({
 			lat: delivery["coordinates"]["latitude"],
 			lng: delivery["coordinates"]["longitude"]
-		})] = [distances[lowestDistance]];
+		});
+
+		intersections[node] = [];
+		connectNodes(intersections, node, JSON.stringify(distances[lowestDistance]));
 	}
 }
 
@@ -65,7 +68,10 @@ function addSourceToIntersections(source, intersections) {
 	}
 
 	const lowestDistance = Math.min(...Object.keys(distances));
-	intersections[JSON.stringify(source)] = [distances[lowestDistance]];
+	const node = JSON.stringify(source);
+
+	intersections[node] = [];
+	connectNodes(intersections, node, JSON.stringify(distances[lowestDistance]));
 }
 
 // Display route on map

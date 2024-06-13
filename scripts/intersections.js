@@ -36,3 +36,10 @@ function getIntersections() {
 
 	return intersections;
 }
+
+function connectNodes(graph, node1, node2) {
+	const node1Neighbors = graph[node1];
+	const node2Neighbors = graph[node2];
+	node1Neighbors.push(JSON.parse(node2));
+	node2Neighbors.push(JSON.parse(node1));
+}
