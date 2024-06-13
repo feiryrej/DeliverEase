@@ -87,7 +87,28 @@ async function displayRoute(source) {
 		lat: lastDeliveryData["coordinates"]["latitude"],
 		lng: lastDeliveryData["coordinates"]["longitude"]
 	};
-	const path = aStar(source, dest, intersections);
+	const [paths, winner] = aStar(source, dest, intersections);
+
+	const polylineOptions = {
+		geodesic: true,
+		strokeColor: "#FF0000",
+		strokeOpacity: 0.6,
+		strokeWeight: 4
+	};
+	let prevNode = winner;
+
+	new google.maps.Polyline({
+		...polylineOptions,
+		path: [dest, json(prevNode)],
+	}).setMap(map);
+
+	while (paths[prevNode] !== undefined) {
+		new google.maps.Polyline({
+			...polylineOptions,
+			path: [json(prevNode), json(paths[prevNode])],
+		}).setMap(map);
+		prevNode = paths[prevNode];
+	}
 
 	displayDeliveryPins(deliveriesData);
 
