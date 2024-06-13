@@ -1,4 +1,4 @@
-let map, source, directionsService, directionsRenderer;
+let map, source, directionsService;
 
 function parsePlaceData(data) {
 	const geometry = data["geometry"]["location"];
@@ -25,10 +25,8 @@ async function initMap(address) {
 		mapId: "26050be015b4cb2d"
 	});
 
-	// Initialize Google Maps API's Directions Service and Renderer
+	// Initialize Google Maps API's Directions Service
 	directionsService = new google.maps.DirectionsService();
-	directionsRenderer = new google.maps.DirectionsRenderer();
-	directionsRenderer.setMap(map);
 
 	setupSearchBox(map, address);
 

@@ -81,51 +81,52 @@ async function displayRoute(source, isOptimized) {
 
 	addDeliveriesToIntersections(deliveriesData, intersections);
 	addSourceToIntersections(source, intersections);
-
-	const lastDeliveryData = deliveriesData[deliveriesData.length - 1];
-	const dest = {
-		lat: lastDeliveryData["coordinates"]["latitude"],
-		lng: lastDeliveryData["coordinates"]["longitude"]
-	};
-
-	if (isOptimized) {
-		const [paths, winner] = aStar(source, dest, intersections);
-
-		const polylineOptions = {
-			geodesic: true,
-			strokeColor: "#FF0000",
-			strokeOpacity: 0.6,
-			strokeWeight: 4
-		};
-		let prevNode = winner;
-
-		new google.maps.Polyline({
-			...polylineOptions,
-			path: [dest, json(prevNode)],
-		}).setMap(map);
-
-		while (paths[prevNode] !== undefined) {
-			new google.maps.Polyline({
-				...polylineOptions,
-				path: [json(prevNode), json(paths[prevNode])],
-			}).setMap(map);
-			prevNode = paths[prevNode];
-		}
-	}
-
 	displayDeliveryPins(deliveriesData);
 
-	const request = {
-		origin: source,
-		destination: dest,
-		travelMode: "DRIVING",
-	};
+	for (const delivery of deliveriesData) {
+		const dest = {
+			lat: delivery["coordinates"]["latitude"],
+			lng: delivery["coordinates"]["longitude"]
+		};
 
-	directionsService.route(request, function (result, status) {
-		if (status == "OK") {
-			directionsRenderer.setDirections(result);
+		if (isOptimized) {
+			const [paths, winner] = aStar(source, dest, intersections);
+
+			const polylineOptions = {
+				geodesic: true,
+				strokeColor: "#FF0000",
+				strokeOpacity: 0.6,
+				strokeWeight: 4
+			};
+			let prevNode = winner;
+
+			new google.maps.Polyline({
+				...polylineOptions,
+				path: [dest, json(prevNode)],
+			}).setMap(map);
+
+			while (paths[prevNode] !== undefined) {
+				new google.maps.Polyline({
+					...polylineOptions,
+					path: [json(prevNode), json(paths[prevNode])],
+				}).setMap(map);
+				prevNode = paths[prevNode];
+			}
 		}
-	});
+
+		directionsService.route(
+			{
+				origin: source,
+				destination: dest,
+				travelMode: "DRIVING",
+			},
+			function (result, status) {
+				if (status == "OK") {
+					new google.maps.DirectionsRenderer({map: map}).setDirections(result);
+				}
+			}
+		);
+	}
 }
 
 function haversine(lat1, lon1, lat2, lon2) {
