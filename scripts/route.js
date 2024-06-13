@@ -78,6 +78,12 @@ function addSourceToIntersections(source, intersections) {
 async function displayRoute(source, isOptimized) {
 	const intersections = getIntersections();
 	const deliveriesData = Object.values(deliveries.getDeliveries());
+	let stops = [
+		{
+			node: str(source),
+			fScore: 0
+		}
+	];
 
 	addDeliveriesToIntersections(deliveriesData, intersections);
 	addSourceToIntersections(source, intersections);
@@ -91,6 +97,10 @@ async function displayRoute(source, isOptimized) {
 
 		if (isOptimized) {
 			const [paths, winner, fScore] = aStar(source, dest, intersections);
+			stops.push({
+				node: str(dest),
+				fScore: fScore
+			});
 		}
 
 		directionsService.route(
@@ -106,6 +116,8 @@ async function displayRoute(source, isOptimized) {
 			}
 		);
 	}
+
+	stops = stops.sort((a, b) => a.fScore - b.fScore);
 }
 
 function haversine(lat1, lon1, lat2, lon2) {
