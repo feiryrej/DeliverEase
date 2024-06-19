@@ -1,9 +1,12 @@
+/* Imported fonts */
 @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* General styles */
 * {
     font-family: "Prompt", sans-serif;
 }
 
+/* Scrollbar styles */
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -11,7 +14,7 @@
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(155, 155, 155, 0.5);
+    background-color: rgba(1, 15, 78, 0.5);
     border-radius: 20px;
     border: transparent;
 }
@@ -19,10 +22,11 @@
     background: none;
 }
 
+/* Preloader styles */
 #preloader {
     height: 100vh;
     width: 100vw;
-    background-color: rgba(212, 212, 212, 0.5);
+    background-color: rgba(175, 188, 243, 0.5);
     position: fixed;
     top: 0;
     left: 0;
@@ -46,13 +50,15 @@
     }
 }
 
+/* Map styles */
 #map {
     height: 100vh;
     width: 100vw;
 }
 
+/* Source input styles */
 #source-input {
-    background-color: #fff;
+    background-color: #c2dcfa;
     font-family: Roboto;
     font-size: 15px;
     font-weight: 300;
@@ -77,6 +83,7 @@
     z-index: 10000;
 }
 
+/* Body and HTML styles */
 html,
 body {
     height: 100%;
@@ -84,12 +91,14 @@ body {
     padding: 0;
 }
 
+/* Pin text styles */
 .pin-text {
     color: #ea4335;
     font-size: 1.2rem;
     margin-top: -25px;
 }
 
+/* Floating panel styles */
 .float-effect {
     border: none;
     -webkit-box-shadow: -1px 1px 10px 0px rgba(0, 0, 0, 0.3);
@@ -99,9 +108,9 @@ body {
 
 .floating-panel {
     width: 350px;
-    height: 550px;
+    max-height: 550px; 
     position: fixed;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(145, 154, 240);
     z-index: 2000;
     left: 25px;
     bottom: 25px;
@@ -109,7 +118,10 @@ body {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    overflow: auto; 
 }
+
+
 .floating-panel > .add-delivery {
     display: flex;
     justify-content: space-between;
@@ -120,29 +132,40 @@ body {
     border: none;
     cursor: pointer;
     background-color: transparent;
+    padding: 8px 16px;
+    transition: background-color 0.3s, transform 0.2s;
 }
-.floating-panel > .add-delivery > button:active {
-    background-color: rgba(202, 202, 202, 0.46);
+.floating-panel > .add-delivery > button.clicked {
+    background-color: rgba(16, 3, 86, 0.46); 
+    transform: scale(0.95); 
+}
+.floating-panel > .add-delivery > button:hover {
+    background-color: rgba(16, 3, 86, 0.1); 
+    color: #100356;
 }
 
+/* Label styles within floating panel */
 .floating-panel label {
     margin-right: 10px;
 }
 
-.floating-panel input {
+/* Input styles within floating panel */
+.floating-panel input[type="text"] {
     font-size: 1rem;
     border: none;
-    background-color: #c3c3ce;
+    background-color: rgb(27, 5, 113);
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     border-radius: 5px;
     padding: 5px;
     width: 55%;
+    color: white;
 }
 .floating-panel input:focus {
     outline: none;
 }
 
+/* Delivery list container styles */
 .delivery-list-container {
     height: 100%;
     display: flex;
@@ -155,10 +178,12 @@ body {
     margin: 10px 0;
 }
 
+/* Delivery list styles */
 .delivery-list {
     overflow: scroll;
 }
 
+/* Sort deliveries container styles */
 .sort-deliveries-container {
     text-align: center;
 }
@@ -167,11 +192,14 @@ body {
     font-size: 0.9rem;
     border: none;
     border-radius: 30px;
-    background-color: rgb(72, 68, 68);
+    background-color: rgb(27, 5, 113);
     color: white;
     padding: 10px 20px;
     cursor: pointer;
 }
 .sort-deliveries-container > button:active {
-    background-color: rgb(33, 31, 31);
+    background-color: rgb(27, 5, 113);
+}
+.sort-deliveries-container > button:hover {
+    background-color: rgba(27, 5, 113, 0.8);
 }

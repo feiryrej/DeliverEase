@@ -1,5 +1,12 @@
 let map, source;
 
+const METRO_MANILA_BOUNDS = {
+	north: 14.8855000,
+	south: 14.4460528,
+	west: 120.8232483,
+	east: 121.2350312
+}
+
 function parsePlaceData(data) {
 	const geometry = data["geometry"]["location"];
 	const lat = geometry["lat"]();
@@ -20,6 +27,10 @@ async function initMap(address) {
 
 	// Display a map on the webpage
 	map = new Map(document.getElementById("map"), {
+		restriction: {
+			latLngBounds: METRO_MANILA_BOUNDS,
+			strictBounds: false
+		},
 		center: source,
 		zoom: 18,
 		mapId: "26050be015b4cb2d"
@@ -65,35 +76,36 @@ function setupSearchBox(map, initialValue) {
 		const bounds = new google.maps.LatLngBounds();
 
 		places.forEach((place) => {
-		if (!place.geometry || !place.geometry.location) {
-			console.log("Returned place contains no geometry");
-			return;
-		}
+			if (!place.geometry || !place.geometry.location) {
+				console.log("Returned place contains no geometry");
+				return;
+			}
 
-		const icon = {
-			url: place.icon,
-			size: new google.maps.Size(71, 71),
-			origin: new google.maps.Point(0, 0),
-			anchor: new google.maps.Point(17, 34),
-			scaledSize: new google.maps.Size(25, 25),
-		};
+			const icon = {
+				url: place.icon,
+				size: new google.maps.Size(71, 71),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(17, 34),
+				scaledSize: new google.maps.Size(25, 25),
+			};
 
-		// Create a marker for each place.
-		markers.push(
-			new google.maps.Marker({
-			map,
-			icon,
-			title: place.name,
-			position: place.geometry.location,
-			}),
-		);
-		if (place.geometry.viewport) {
-			// Only geocodes have viewport.
-			bounds.union(place.geometry.viewport);
-		} else {
-			bounds.extend(place.geometry.location);
-		}
+			// Create a marker for each place.
+			markers.push(
+				new google.maps.Marker({
+				map,
+				icon,
+				title: place.name,
+				position: place.geometry.location,
+				}),
+			);
+			if (place.geometry.viewport) {
+				// Only geocodes have viewport.
+				bounds.union(place.geometry.viewport);
+			} else {
+				bounds.extend(place.geometry.location);
+			}
 		});
 		map.fitBounds(bounds);
 	});
 }
+

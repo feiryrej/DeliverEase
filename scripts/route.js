@@ -142,7 +142,7 @@ async function displayRoute(source, isOptimized) {
 		const polylineOptions = {
 			map: map,
 			geodesic: true,
-			strokeColor: i === 1 ? "#00FF00" : "#FF0000",
+			strokeColor: i === 1 ? "#919AF0" : "#100356",
 			strokeOpacity: 0.6,
 			strokeWeight: 4
 		};
