@@ -6,5 +6,6 @@ npm install http-server -g
 ```
 ## Run
 ```bash
-http-server -c-1
+npm run dev
 ```
+
