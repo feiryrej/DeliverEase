@@ -1,0 +1,18 @@
+{
+  "name": "deliverease",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:3D": "cd DeliverEase3D && npm run dev",
+    "dev:Map": "cd DeliverEase && http-server -c-1",
+    "dev": "concurrently \"npm run dev:3D\" \" npm run dev:Map\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
