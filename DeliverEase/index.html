@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DeliverEase: Delivery Routing System</title>
+    <link rel="stylesheet" href="./style.css"/>
+
+    <script src="./scripts/map.js" defer></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvWTae4P6_02BysIgXIOIHykR3r3UpoFs&libraries=places&v=weekly"
+      defer
+    ></script>
+
+    <script src="./data/intersections.js" defer></script>
+    <script src="./data/orders.js" defer></script>
+
+    <script src="./scripts/intersections.js" defer></script>
+    <script src="./scripts/astar.js" defer></script>
+    <script src="./scripts/route.js" defer></script>
+    <script src="./scripts/deliveries.js" defer></script>
+    <script src="./scripts/main.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="loading">
+        <span>L</span>
+        <span>o</span>
+        <span>a</span>
+        <span>d</span>
+        <span>i</span>
+        <span>n</span>
+        <span>g</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+      </div>
+    </div>
+
+    <script src="./scripts/preloader.js"></script>
+
+    <!-- DIV element to embed map -->
+    <div id="map"></div>
+
+    <input
+      id="source-input"
+      class="controls float-effect"
+      type="text"
+      placeholder="Source Location"
+    />
+
+    <div class="floating-panel float-effect">
+      <div class="add-delivery">
+        <label>Add delivery</label>
+        <input type="text" placeholder="Enter order ID">
+        <button onclick="deliveries.addDelivery()">➕</button>
+      </div>
+      <div class="delivery-list-container">
+        <p>Delivery List</p>
+        <div class="delivery-list"></div>
+      </div>
+      <div class="sort-deliveries-container">
+        <button onclick="displayRoute(source, true)">Optimize Deliveries</button>
+        <button onclick="deliveries.reset()">Reset</button>
+      </div>
+    </div>
+  </body>
+</html>

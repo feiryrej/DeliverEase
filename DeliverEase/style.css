@@ -1,0 +1,205 @@
+/* Imported fonts */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* General styles */
+* {
+    font-family: "Prompt", sans-serif;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(1, 15, 78, 0.5);
+    border-radius: 20px;
+    border: transparent;
+}
+::-webkit-scrollbar-corner {
+    background: none;
+}
+
+/* Preloader styles */
+#preloader {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(175, 188, 243, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50000;
+    text-align: center;
+    line-height: 100vh;
+    user-select: none;
+    font-size: 2rem;
+}
+#preloader > .loading > span {
+    display: inline-block;
+    animation: loading 0.5s infinite alternate;
+    margin: -4px;
+}
+@keyframes loading {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+/* Map styles */
+#map {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Source input styles */
+#source-input {
+    background-color: #c2dcfa;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+    height: 40px;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 22px;
+    z-index: 10000;
+}
+#source-input:focus {
+    outline: none;
+}
+
+/* Google Maps search box autocomplete container */
+.pac-container {
+    z-index: 10000;
+}
+
+/* Body and HTML styles */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Pin text styles */
+.pin-text {
+    color: #ea4335;
+    font-size: 1.2rem;
+    margin-top: -25px;
+}
+
+/* Floating panel styles */
+.float-effect {
+    border: none;
+    -webkit-box-shadow: -1px 1px 10px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: -1px 1px 10px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: -1px 1px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.floating-panel {
+    width: 350px;
+    max-height: 550px; 
+    position: fixed;
+    background-color: rgb(145, 154, 240);
+    z-index: 2000;
+    left: 25px;
+    bottom: 25px;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto; 
+}
+
+
+.floating-panel > .add-delivery {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.floating-panel > .add-delivery > button {
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 8px 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.floating-panel > .add-delivery > button.clicked {
+    background-color: rgba(16, 3, 86, 0.46); 
+    transform: scale(0.95); 
+}
+.floating-panel > .add-delivery > button:hover {
+    background-color: rgba(16, 3, 86, 0.1); 
+    color: #100356;
+}
+
+/* Label styles within floating panel */
+.floating-panel label {
+    margin-right: 10px;
+}
+
+/* Input styles within floating panel */
+.floating-panel input[type="text"] {
+    font-size: 1rem;
+    border: none;
+    background-color: rgb(27, 5, 113);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    border-radius: 5px;
+    padding: 5px;
+    width: 55%;
+    color: white;
+}
+.floating-panel input:focus {
+    outline: none;
+}
+
+/* Delivery list container styles */
+.delivery-list-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 480px;
+}
+.delivery-list-container > p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Delivery list styles */
+.delivery-list {
+    overflow: scroll;
+}
+
+/* Sort deliveries container styles */
+.sort-deliveries-container {
+    text-align: center;
+}
+.sort-deliveries-container > button {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 30px;
+    background-color: rgb(27, 5, 113);
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.sort-deliveries-container > button:active {
+    background-color: rgb(27, 5, 113);
+}
+.sort-deliveries-container > button:hover {
+    background-color: rgba(27, 5, 113, 0.8);
+}
