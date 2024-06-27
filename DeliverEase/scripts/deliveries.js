@@ -21,7 +21,7 @@ class Deliveries {
                         <span>${delivery["address"]["city_province"]}</span>
                     </div>
                     <div style="display: inline-block; width: 25%; text-align: right;">
-                        <button type="button">DONE</button>
+                        <button onclick="deliveries.markDone('${delivery["order_id"]}')">DONE</button>
                         <button type="button">DELETE</button>
                     </div>
                 </div>
@@ -60,6 +60,26 @@ class Deliveries {
 
         localStorage.setItem("deliveries", JSON.stringify(deliveries));
         this.display();
+    }
+
+    markDone(orderID) {
+        console.log(`Marking order ${orderID} as done`);
+        let deliveries = this.getDeliveries();
+
+        if (deliveries[orderID]) {
+            const coordinates = deliveries[orderID].coordinates;
+            source = {
+                lat: coordinates.latitude,
+                lng: coordinates.longitude
+            };
+
+            delete deliveries[orderID];
+            localStorage.setItem("deliveries", JSON.stringify(deliveries));
+            this.display();
+            displayRoute(source, true);
+        } else {
+            console.error(`Order ID ${orderID} not found`);
+        }
     }
 
     reset() {
