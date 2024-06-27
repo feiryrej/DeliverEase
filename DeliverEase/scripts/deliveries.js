@@ -35,7 +35,11 @@ class Deliveries {
     }
 
     getDefaultDeliveries() {
-        return {};
+        return {
+            "2406069U1PVRCM": orders["2406069U1PVRCM"],
+            "240528H1NP8TQS": orders["240528H1NP8TQS"],
+            "24052340GFPN7G": orders["24052340GFPN7G"],
+        };
     }
 
     getDeliveries() {
