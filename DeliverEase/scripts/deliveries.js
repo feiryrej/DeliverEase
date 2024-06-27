@@ -59,5 +59,6 @@ class Deliveries {
     reset() {
         localStorage.removeItem("deliveries");
         this.display();
+        clearPolylines();
     }
 }
