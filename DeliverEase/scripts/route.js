@@ -31,6 +31,10 @@ async function displayDeliveryPins(deliveriesData) {
 				lng: delivery["coordinates"]["longitude"]
 			},
 			content: new PinElement({glyph: p}).element,
+			// icon: {
+			// 	url: "pin.png",  
+			// 	scaledSize: new google.maps.Size(30, 30)
+			// }
 		});
 		deliveryPins.push(pin);
 	}
@@ -142,7 +146,7 @@ async function displayRoute(source, isOptimized) {
 		const polylineOptions = {
 			map: map,
 			geodesic: true,
-			strokeColor: i === 1 ? "#919AF0" : "#100356",
+			strokeColor: i === 1 ? "#9c0511" : "#100356",
 			strokeOpacity: 0.6,
 			strokeWeight: 4
 		};
