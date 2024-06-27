@@ -146,6 +146,8 @@ body {
 .floating-panel > .add-delivery > button.clicked {
     background-color: rgba(16, 3, 86, 0.46); 
     transform: scale(0.95); 
+    font-size: 0.9rem; 
+    padding: 8px 10px; 
 }
 .floating-panel > .add-delivery > button:hover {
     background-color: rgba(16, 3, 86, 0.1); 
@@ -168,7 +170,7 @@ body {
     font-weight: 400;
     border-radius: 5px;
     padding: 5px;
-    width: 55%;
+    width: 45%;
     color: white; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
