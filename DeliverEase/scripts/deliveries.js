@@ -22,7 +22,7 @@ class Deliveries {
                     </div>
                     <div style="display: inline-block; width: 25%; text-align: right;">
                         <button onclick="deliveries.markDone('${delivery["order_id"]}')">DONE</button>
-                        <button type="button">DELETE</button>
+                        <button onclick="deliveries.deleteDelivery('${delivery["order_id"]}')">DELETE</button>
                     </div>
                 </div>
                 <hr style="margin: 10px 0;" />
@@ -76,6 +76,14 @@ class Deliveries {
         } else {
             console.error(`Order ID ${orderID} not found`);
         }
+    }
+
+    deleteDelivery(orderID) {
+        const deliveries = this.getDeliveries();
+        delete deliveries[orderID];
+        localStorage.setItem("deliveries", JSON.stringify(deliveries));
+        this.display();
+        displayRoute(source, true);
     }
 
     reset() {
