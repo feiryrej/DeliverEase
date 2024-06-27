@@ -58,7 +58,9 @@
 
 /* Source input styles */
 #source-input {
-    background-color: #c2dcfa;
+    background: rgba(194, 220, 250, 0.4);
+    background: linear-gradient(135deg, rgba(194, 220, 250, 0.6), rgba(255, 255, 255, 0.2)); 
+    backdrop-filter: blur(10px); /* Glass effect */
     font-family: Roboto;
     font-size: 15px;
     font-weight: 300;
@@ -73,7 +75,10 @@
     transform: translateX(-50%);
     border-radius: 22px;
     z-index: 10000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
+
 #source-input:focus {
     outline: none;
 }
@@ -110,17 +115,20 @@ body {
     width: 350px;
     max-height: 550px; 
     position: fixed;
-    background-color: rgb(145, 154, 240);
+    background: rgba(194, 220, 250, 0.4); 
+    background: linear-gradient(135deg, rgba(194, 220, 250, 0.6), rgba(255, 255, 255, 0.2)); 
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
     z-index: 2000;
     left: 25px;
     bottom: 25px;
     padding: 15px;
+    max-height: 600px; 
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    overflow: auto; 
+    overflow: hidden; 
 }
-
 
 .floating-panel > .add-delivery {
     display: flex;
@@ -153,13 +161,16 @@ body {
 .floating-panel input[type="text"] {
     font-size: 1rem;
     border: none;
-    background-color: rgb(27, 5, 113);
+    background: rgba(16, 2, 69, 0.4); 
+    background: linear-gradient(135deg, rgba(27, 5, 113, 0.6), rgba(0, 0, 0, 0.2)); 
+    backdrop-filter: blur(5px); 
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     border-radius: 5px;
     padding: 5px;
     width: 55%;
-    color: white;
+    color: white; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 .floating-panel input:focus {
     outline: none;
@@ -180,26 +191,41 @@ body {
 
 /* Delivery list styles */
 .delivery-list {
-    overflow: scroll;
+    overflow: auto; 
+    max-height: 450px; 
 }
 
 /* Sort deliveries container styles */
 .sort-deliveries-container {
     text-align: center;
 }
+/* Sort deliveries button styles */
 .sort-deliveries-container > button {
     text-transform: uppercase;
     font-size: 0.9rem;
     border: none;
     border-radius: 30px;
-    background-color: rgb(27, 5, 113);
+    background: rgba(27, 5, 113, 0.7); 
+    background: linear-gradient(135deg, rgba(27, 5, 113, 0.8), rgba(0, 0, 0, 0.5));
+    backdrop-filter: blur(5px);
     color: white;
     padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
+
 .sort-deliveries-container > button:active {
-    background-color: rgb(27, 5, 113);
+    background-color: rgba(27, 5, 113, 0.8); 
 }
+
 .sort-deliveries-container > button:hover {
-    background-color: rgba(27, 5, 113, 0.8);
+    background-color: rgba(27, 5, 113, 0.6); 
+    transform: scale(1.05); 
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2); 
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.882); 
+    opacity: 1; 
 }
