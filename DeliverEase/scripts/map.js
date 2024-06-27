@@ -1,10 +1,10 @@
 let map, source;
 
 const METRO_MANILA_BOUNDS = {
-	north: 14.8855000,
-	south: 14.4460528,
-	west: 120.8232483,
-	east: 121.2350312
+    north: 14.7,
+    south: 14.5,
+    west: 120.95,
+    east: 121.1
 }
 
 function parsePlaceData(data) {
@@ -91,12 +91,15 @@ function setupSearchBox(map, initialValue) {
 
 			// Create a marker for each place.
 			markers.push(
-				new google.maps.Marker({
-				map,
-				icon,
-				title: place.name,
-				position: place.geometry.location,
-				}),
+				new google.maps.marker.AdvancedMarkerElement({
+					map,
+					title: place.name,
+					position: place.geometry.location,
+					icon: {
+						url: "pin.svg",
+						scaledSize: new google.maps.Size(23.5, 35)
+					},
+				})
 			);
 			if (place.geometry.viewport) {
 				// Only geocodes have viewport.
@@ -108,4 +111,3 @@ function setupSearchBox(map, initialValue) {
 		map.fitBounds(bounds);
 	});
 }
-
