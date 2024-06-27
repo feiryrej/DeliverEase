@@ -1,3 +1,5 @@
+![DeliverEase](https://github.com/feiryrej/DeliverEase/assets/116869096/c7c30f8a-ea0f-46b3-9743-b47214f390eb)
+
 # DeliverEase: A Prototype Delivery Routing System using A* Search Algorithm
 
 DeliverEase is an innovative prototype routing system designed to streamline route planning for delivery riders. This system optimizes delivery routes to save time, reduce fuel consumption, and enhance efficiency, making the delivery process smoother and more reliable.
