@@ -12,12 +12,18 @@ class Deliveries {
 
         for (const delivery of deliveriesData) {
             innerHTML += `
-                <div>
-                    <span>ORDER ID: ${delivery["order_id"]}</span>
-                    <br />
-                    <span>${delivery["address"]["street"]}</span>
-                    <br />
-                    <span>${delivery["address"]["city_province"]}</span>
+                <div style="margin-bottom: 10px;">
+                    <div style="display: inline-block; width: 70%;">
+                        <span>ORDER ID: ${delivery["order_id"]}</span>
+                        <br />
+                        <span>${delivery["address"]["street"]}</span>
+                        <br />
+                        <span>${delivery["address"]["city_province"]}</span>
+                    </div>
+                    <div style="display: inline-block; width: 25%; text-align: right;">
+                        <button type="button">DONE</button>
+                        <button type="button">DELETE</button>
+                    </div>
                 </div>
                 <hr style="margin: 10px 0;" />
             `;
