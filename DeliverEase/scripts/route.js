@@ -20,9 +20,23 @@ async function displayDeliveryPins(deliveriesData) {
 	deliveryPins = [];
 
 	for (const delivery of deliveriesData) {
+		const container = document.createElement("div");
+		container.style.position = "relative";
+		container.style.width = "70px"; // Adjust based on your image size
+		container.style.height = "70px"; // Adjust based on your image size
+
+		const beachFlagImg = document.createElement("img");
+		beachFlagImg.src = "https://i.postimg.cc/Zndyyfbs/pin.png";
+		beachFlagImg.style.width = "100%";
+		beachFlagImg.style.height = "100%";
+		beachFlagImg.style.display = "block";
+
 		const p = document.createElement("p");
 		p.textContent = delivery["order_id"];
 		p.classList.add("pin-text");
+
+		container.appendChild(beachFlagImg);
+		container.appendChild(p);
 
 		const pin = new AdvancedMarkerElement({
 			map,
@@ -30,14 +44,12 @@ async function displayDeliveryPins(deliveriesData) {
 				lat: delivery["coordinates"]["latitude"],
 				lng: delivery["coordinates"]["longitude"]
 			},
-			content: new PinElement({glyph: p}).element,
-			// icon: {
-			// 	url: "pin.png",  
-			// 	scaledSize: new google.maps.Size(30, 30)
-			// }
+			content: container,
 		});
+
 		deliveryPins.push(pin);
 	}
+
 }
 
 function addDeliveriesToIntersections(deliveriesData, intersections) {
