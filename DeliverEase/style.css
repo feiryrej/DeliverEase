@@ -10,14 +10,17 @@
 ::-webkit-scrollbar {
     width: 5px;
 }
+
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: rgba(1, 15, 78, 0.5);
     border-radius: 20px;
     border: transparent;
 }
+
 ::-webkit-scrollbar-corner {
     background: none;
 }
@@ -36,11 +39,13 @@
     user-select: none;
     font-size: 2rem;
 }
+
 #preloader > .loading > span {
     display: inline-block;
     animation: loading 0.5s infinite alternate;
     margin: -4px;
 }
+
 @keyframes loading {
     0% {
         transform: scale(1);
@@ -143,6 +148,7 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
 .floating-panel > .add-delivery > button {
     font-size: 1rem;
     border: none;
@@ -151,12 +157,14 @@ body {
     padding: 8px 16px;
     transition: background-color 0.3s, transform 0.2s;
 }
+
 .floating-panel > .add-delivery > button.clicked {
     background-color: rgba(16, 3, 86, 0.46);
     transform: scale(0.95);
     font-size: 0.9rem;
     padding: 8px 10px;
 }
+
 .floating-panel > .add-delivery > button:hover {
     background-color: rgba(16, 3, 86, 0.1);
     color: #100356;
@@ -182,6 +190,7 @@ body {
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 .floating-panel input:focus {
     outline: none;
 }
@@ -193,6 +202,7 @@ body {
     flex-direction: column;
     height: 480px;
 }
+
 .delivery-list-container > p {
     font-size: 1.2rem;
     font-weight: bold;
@@ -209,6 +219,7 @@ body {
 .sort-deliveries-container {
     text-align: center;
 }
+
 /* Sort deliveries button styles */
 .sort-deliveries-container > button {
     text-transform: uppercase;
@@ -240,74 +251,85 @@ body {
     opacity: 1;
 }
 
-/* New styles for delivery items */
+/* Delivery item styles */
 .delivery-item {
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3px;
+    padding: 10px;
+    border-radius: 2px;
+    position: relative;
+    height: 100px; 
 }
 
+/* Delivery details styles */
 .delivery-details {
-    display: inline-block;
-    width: 70%;
+    flex-grow: 1;
+    margin-right: 20px;
 }
 
-.delivery-actions {
-    display: inline-block;
-    width: 25%;
-    text-align: right;
-    vertical-align: bottom; /* Aligns the buttons to the top */
+/* Delivery item styles */
+.delivery-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    margin-bottom: 3px;
+    padding: 10px;
+    border-radius: 2px;
+    position: relative; 
+    height: 100px; 
 }
 
-.delivery-separator {
-    margin: 10px 0;
+/* Delivery details styles */
+.delivery-details {
+    flex-grow: 1;
+    margin-right: 20px;
 }
 
 /* Delivery button styles */
 .delivery-button {
     text-transform: uppercase;
     font-size: 0.8rem;
-    border: none;
-    border-radius: 15px;
     backdrop-filter: blur(5px);
-    color: white;
-    padding: 10px 15px; /* Increased padding for better appearance */
+    padding: 10px; 
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(255, 255, 255, 0.3) inset; /* Outer and inner shadow for glossy effect */
-    margin-left: 5px;
+    margin: 3px 0; 
+    border: none; 
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .delivery-button i {
-    color: black; /* Make the icon color black */
-    font-size: .5 rem; /* Increased font size for bigger icons */
+    font-size: 1.2rem; 
 }
 
-/* Specific styles for DONE button */
-.delivery-button.done {
-    background: linear-gradient(135deg, rgba(144, 238, 144, 0.8), rgba(34, 139, 34, 0.8)); /* Gradient of light green */
-    margin-bottom: 5px; /* Add margin to push the DONE button up */
+/* Done icon styles */
+.delivery-button.done i {
+    color: green; 
 }
 
-.delivery-button.done:active {
-    background: linear-gradient(135deg, rgba(34, 139, 34, 0.8), rgba(0, 100, 0, 0.8)); /* Darker gradient for active state */
+.delivery-button.done i:hover {
+    color: rgb(0, 255, 0); 
 }
 
-.delivery-button.done:hover {
-    background: linear-gradient(135deg, rgba(144, 238, 144, 0.8), rgba(50, 205, 50, 0.8)); /* Lighter gradient for hover state */
-    transform: scale(1.05);
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(255, 255, 255, 0.3) inset; /* Enhanced shadow on hover */
+/* Trash icon styles */
+.delivery-button.delete i {
+    color: rgb(157, 2, 2); 
 }
 
-/* Specific styles for DELETE button */
-.delivery-button.delete {
-    background: linear-gradient(135deg, rgba(255, 99, 71, 0.8), rgba(220, 20, 60, 0.8)); /* Gradient of light red */
+.delivery-button.delete i:hover {
+    color: rgb(255, 0, 0); 
 }
 
-.delivery-button.delete:active {
-    background: linear-gradient(135deg, rgba(220, 20, 60, 0.8), rgba(178, 34, 34, 0.8)); /* Darker gradient for active state */
-}
-
-.delivery-button.delete:hover {
-    background: linear-gradient(135deg, rgba(255, 99, 71, 0.8), rgba(255, 69, 0, 0.8)); /* Lighter gradient for hover state */
-    transform: scale(1.05);
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(255, 255, 255, 0.3) inset; /* Enhanced shadow on hover */
+/* Delivery actions styles */
+.delivery-actions {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px; 
 }
