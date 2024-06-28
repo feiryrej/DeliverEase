@@ -95,10 +95,6 @@ function setupSearchBox(map, initialValue) {
 					map,
 					title: place.name,
 					position: place.geometry.location,
-					// icon: {
-					// 	url: "pin.svg",
-					// 	scaledSize: new google.maps.Size(23.5, 35)
-					// },
 				})
 			);
 			if (place.geometry.viewport) {

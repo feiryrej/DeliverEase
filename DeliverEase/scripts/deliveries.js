@@ -55,28 +55,28 @@ class Deliveries {
         const input = document.querySelector(".floating-panel input");
         const orderID = input.value.trim(); // Trim to remove any leading/trailing whitespace
         const deliveries = this.getDeliveries();
-    
+
         input.value = "";
-    
+
         // Check if orderID exists in deliveries
         if (deliveries[orderID]) {
             alert('You have already entered this delivery code.');
             return;
         }
-    
+
         // Check if orderID exists in orders
         if (!orders[orderID]) {
             alert('The delivery code entered does not exist or is incorrect.');
             return;
         }
-    
+
         // Add delivery to deliveries if it exists in orders
         deliveries[orderID] = orders[orderID];
-    
+
         localStorage.setItem("deliveries", JSON.stringify(deliveries));
         this.display();
-    }    
-    
+    }
+
 
     markDone(orderID) {
         console.log(`Marking order ${orderID} as done`);
@@ -110,5 +110,6 @@ class Deliveries {
         localStorage.removeItem("deliveries");
         this.display();
         clearPolylines();
+        clearMarkers();
     }
 }
