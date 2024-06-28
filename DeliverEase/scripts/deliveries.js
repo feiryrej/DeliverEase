@@ -12,20 +12,24 @@ class Deliveries {
 
         for (const delivery of deliveriesData) {
             innerHTML += `
-                <div style="margin-bottom: 10px;">
-                    <div style="display: inline-block; width: 70%;">
+                <div class="delivery-item">
+                    <div class="delivery-details">
                         <span>ORDER ID: ${delivery["order_id"]}</span>
                         <br />
                         <span>${delivery["address"]["street"]}</span>
                         <br />
                         <span>${delivery["address"]["city_province"]}</span>
                     </div>
-                    <div style="display: inline-block; width: 25%; text-align: right;">
-                        <button onclick="deliveries.markDone('${delivery["order_id"]}')">DONE</button>
-                        <button onclick="deliveries.deleteDelivery('${delivery["order_id"]}')">DELETE</button>
+                    <div class="delivery-actions">
+                        <button class="delivery-button done" onclick="deliveries.markDone('${delivery["order_id"]}')">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </button>
+                        <button class="delivery-button delete" onclick="deliveries.deleteDelivery('${delivery["order_id"]}')">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
                     </div>
                 </div>
-                <hr style="margin: 10px 0;" />
+                <hr class="delivery-separator" />
             `;
         }
 
@@ -37,8 +41,8 @@ class Deliveries {
     getDefaultDeliveries() {
         return {
             "2406069U1PVRCM": orders["2406069U1PVRCM"],
-            "240528H1NP8TQS": orders["240528H1NP8TQS"],
-            "24052340GFPN7G": orders["24052340GFPN7G"],
+            "240506K4KX9F6H": orders["240506K4KX9F6H"],
+            "2404183QBAB6QT": orders["2404183QBAB6QT"],
         };
     }
 
