@@ -24,6 +24,8 @@ async function displayDeliveryPins(deliveriesData) {
 		container.style.position = "relative";
 		container.style.width = "70px"; // Adjust based on your image size
 		container.style.height = "70px"; // Adjust based on your image size
+		container.style.top = "10px"; // Adjust vertically based on pin image size
+
 
 		const beachFlagImg = document.createElement("img");
 		beachFlagImg.src = "https://i.postimg.cc/Zndyyfbs/pin.png";
@@ -34,6 +36,9 @@ async function displayDeliveryPins(deliveriesData) {
 		const p = document.createElement("p");
 		p.textContent = delivery["order_id"];
 		p.classList.add("pin-text");
+		p.style.textAlign = "center"; // Center the text horizontally
+        p.style.position = "absolute";
+        p.style.bottom = "60px"; // Adjust vertical position relative to the container
 
 		container.appendChild(beachFlagImg);
 		container.appendChild(p);
