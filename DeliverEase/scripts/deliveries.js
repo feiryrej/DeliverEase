@@ -107,7 +107,5 @@ class Deliveries {
         this.display();
         clearPolylines();
         clearMarkers();
-        source = null;
-        setupSearchBox(map, source);
     }
 }

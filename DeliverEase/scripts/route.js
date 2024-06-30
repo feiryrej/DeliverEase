@@ -116,11 +116,6 @@ function clearPolylines() {
 
 // Display route on map
 async function displayRoute(source, isOptimized) {
-    if (!source) {
-        alert("Source location is null. Please select a valid source.");
-        return;
-    }
-
 	const intersections = getIntersections();
 	const deliveriesData = Object.values(deliveries.getDeliveries());
 	let stops = [
