@@ -1,6 +1,7 @@
 class Deliveries {
     constructor(container) {
         this.container = container;
+        this.defaultLocation = this.getDefaultLocationFromStorage(); // Initialize defaultLocation from storage
     }
 
     display() {
@@ -39,21 +40,35 @@ class Deliveries {
     }
 
     getDefaultDeliveries() {
-        return {
-            "2406069U1PVRCM": orders["2406069U1PVRCM"],
-            "240506K4KX9F6H": orders["240506K4KX9F6H"],
-            "2404183QBAB6QT": orders["2404183QBAB6QT"],
-        };
+        return {};
     }
 
     getDeliveries() {
-        return JSON.parse(localStorage.getItem("deliveries"))
-            || this.getDefaultDeliveries();
+        return JSON.parse(localStorage.getItem("deliveries")) || this.getDefaultDeliveries();
+    }
+
+    getDefaultLocationFromStorage() {
+        return JSON.parse(localStorage.getItem("defaultLocation"));
+    }
+
+    saveDefaultLocationToStorage(location) {
+        localStorage.setItem("defaultLocation", JSON.stringify(location));
+    }
+
+    removeDefaultLocationFromStorage() {
+        localStorage.removeItem("defaultLocation");
     }
 
     addDelivery() {
         const input = document.querySelector(".floating-panel input");
         const orderID = input.value.trim(); // Trim to remove any leading/trailing whitespace
+
+        // Check if input is empty
+        if (!orderID) {
+            alert('Please enter a delivery code.');
+            return;
+        }
+
         const deliveries = this.getDeliveries();
 
         input.value = "";
@@ -77,14 +92,13 @@ class Deliveries {
         this.display();
     }
 
-
     markDone(orderID) {
         console.log(`Marking order ${orderID} as done`);
         let deliveries = this.getDeliveries();
 
         if (deliveries[orderID]) {
             const coordinates = deliveries[orderID].coordinates;
-            source = {
+            const source = {
                 lat: coordinates.latitude,
                 lng: coordinates.longitude
             };
@@ -108,9 +122,26 @@ class Deliveries {
 
     reset() {
         localStorage.removeItem("deliveries");
+        this.defaultLocation = null; 
+        this.removeDefaultLocationFromStorage();
         this.display();
         clearPolylines();
         clearMarkers();
     }
-    
+
+    setDefaultLocation(location) {
+        this.defaultLocation = location;
+        this.saveDefaultLocationToStorage(location);
+    }
+
+    optimize() {
+        if (!this.defaultLocation) {
+            alert('Please select a starting point and add delivery codes before optimizing the route.');
+            return;
+        }
+    }
+}
+
+function onStartingPointSelected(lat, lng) {
+    deliveries.setDefaultLocation({ lat, lng });
 }
