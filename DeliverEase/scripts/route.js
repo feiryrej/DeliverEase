@@ -114,7 +114,6 @@ function clearPolylines() {
 	polylines = [];
 }
 
-// Display route on map
 async function displayRoute(source, isOptimized) {
 	const intersections = getIntersections();
 	const deliveriesData = Object.values(deliveries.getDeliveries());
@@ -133,11 +132,16 @@ async function displayRoute(source, isOptimized) {
 
 	markers.push(new google.maps.Marker({ map, position: source }));
 
+	const bounds = new google.maps.LatLngBounds();
+	bounds.extend(source);
+
 	for (const delivery of deliveriesData) {
 		const dest = {
 			lat: delivery["coordinates"]["latitude"],
 			lng: delivery["coordinates"]["longitude"]
 		};
+
+		bounds.extend(dest); // Extend bounds to include delivery coordinates
 
 		if (isOptimized) {
 			const [paths, winner, fScore] = aStar(source, dest, intersections);
@@ -163,26 +167,31 @@ async function displayRoute(source, isOptimized) {
 		const polylineOptions = {
 			map: map,
 			geodesic: true,
-			strokeColor: i === 1 ? "#9c0511" : "#100356",
+			strokeColor: i === 1 ? "#de0707" : "#100356",
 			strokeOpacity: 0.6,
-			strokeWeight: 4
+			strokeWeight: 4,
+			zIndex: i === 1 ? 2 : 1
 		};
 
 		let prevNode = winner;
 
+		const polylinePath = [json(prevNode), json(stop.node)];
 		polylines.push(new google.maps.Polyline({
 			...polylineOptions,
-			path: [json(prevNode), json(stop.node)],
+			path: polylinePath,
 		}));
 
 		while (paths[prevNode] !== undefined) {
+			const polylineSegment = [json(prevNode), json(paths[prevNode])];
 			polylines.push(new google.maps.Polyline({
 				...polylineOptions,
-				path: [json(prevNode), json(paths[prevNode])],
+				path: polylineSegment,
 			}));
 			prevNode = paths[prevNode];
 		}
 	}
+
+	map.fitBounds(bounds); 
 }
 
 function haversine(lat1, lon1, lat2, lon2) {

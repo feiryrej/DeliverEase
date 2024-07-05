@@ -327,7 +327,7 @@ body {
 /* Delivery actions styles */
 .delivery-actions {
     display: flex;
-    flex-direction: column; 
+    flex-direction: row; 
     align-items: center; 
     position: absolute; 
     bottom: 10px; 
