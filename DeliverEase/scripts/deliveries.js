@@ -59,6 +59,7 @@ class Deliveries {
         localStorage.removeItem("defaultLocation");
     }
 
+    // Adds a new delivery to the list
     addDelivery() {
         const input = document.querySelector(".floating-panel input");
         const orderID = input.value.trim(); // Trim to remove any leading/trailing whitespace
@@ -92,6 +93,7 @@ class Deliveries {
         this.display();
     }
 
+    // Marks a delivery as done and updates display
     markDone(orderID) {
         console.log(`Marking order ${orderID} as done`);
         let deliveries = this.getDeliveries();
@@ -112,6 +114,7 @@ class Deliveries {
         }
     }
 
+    // Deletes a delivery and updates display
     deleteDelivery(orderID) {
         const deliveries = this.getDeliveries();
         delete deliveries[orderID];
@@ -120,6 +123,7 @@ class Deliveries {
         displayRoute(source, true);
     }
 
+    // Resets all deliveries and default location
     reset() {
         localStorage.removeItem("deliveries");
         this.defaultLocation = null; 
@@ -129,11 +133,13 @@ class Deliveries {
         clearMarkers();
     }
 
+    // Sets the default starting location for route optimization
     setDefaultLocation(location) {
         this.defaultLocation = location;
         this.saveDefaultLocationToStorage(location);
     }
 
+    // Optimizes the route based on the default starting location
     optimize() {
         if (!this.defaultLocation) {
             alert('Please select a starting point and add delivery codes before optimizing the route.');
@@ -142,6 +148,7 @@ class Deliveries {
     }
 }
 
+// Callback function when a starting point is selected on the map
 function onStartingPointSelected(lat, lng) {
     deliveries.setDefaultLocation({ lat, lng });
 }
