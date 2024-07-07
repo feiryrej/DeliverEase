@@ -1,3 +1,4 @@
+// Function to animate text elements in the preloader
 function animatePreloaderText() {
 	let counter = 1;
 
