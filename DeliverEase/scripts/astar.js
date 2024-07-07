@@ -46,8 +46,10 @@ function aStar(start, goal, graph) {
 
     while (openList.length > 0) {
         const current = getNodeWithLowestFScore(openList, fScore);
+        console.log("Current node:", current);
 
         if (current === str(goal)) {
+            console.log("Found goal node:", current);
             return [cameFrom, cameFrom[str(goal)], fScore[current]];
         }
 
@@ -67,6 +69,7 @@ function aStar(start, goal, graph) {
 
                 if (!openList.includes(neighbor)) {
                     openList.push(neighbor);
+                    console.log("Added to open list:", neighbor);
                 }
             }
         }
