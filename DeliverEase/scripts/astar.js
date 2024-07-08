@@ -39,6 +39,9 @@ function weight(current, neighbor) {
     return haversine(current.lat, current.lng, neighbor.lat, neighbor.lng);
 }
 
+//Pseudocode from Wikipedia
+//https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
+
 // A* search algorithm function
 function aStar(start, goal, graph) {
     // Heuristic function using haversine distance
