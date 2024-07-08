@@ -98,7 +98,7 @@ class Deliveries {
 
         if (deliveries[orderID]) {
             const coordinates = deliveries[orderID].coordinates;
-            const source = {
+            source = {
                 lat: coordinates.latitude,
                 lng: coordinates.longitude
             };
