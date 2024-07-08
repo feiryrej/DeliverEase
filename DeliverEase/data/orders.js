@@ -8,7 +8,7 @@ const orders = {
         "coordinates": {
             "latitude": 14.607870120803339,
             "longitude": 121.00877446429824
-        },   
+        },
     },
     "240528H1NP8TQS": {
         "order_id": "240528H1NP8TQS",
@@ -19,7 +19,7 @@ const orders = {
         "coordinates": {
             "latitude": 14.608037710721195,
             "longitude": 121.00699577721888
-        }  
+        }
     },
     "24052340GFPN7G": {
         "order_id": "24052340GFPN7G",
@@ -30,7 +30,7 @@ const orders = {
         "coordinates": {
             "latitude": 14.607706565787252,
             "longitude": 121.00746060341531
-        }  
+        }
     },
     "240506K4VFWEK5": {
         "order_id": "240506K4VFWEK5",
@@ -41,7 +41,7 @@ const orders = {
         "coordinates": {
             "latitude": 14.609334797273833,
             "longitude": 121.00765534596299
-        }  
+        }
     },
     "240506K4KX9F6H": {
         "order_id": "240506K4KX9F6H",
@@ -50,7 +50,7 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.60989975876693, 
+            "latitude": 14.60989975876693,
             "longitude": 121.00809738438326
         }
     },
@@ -61,9 +61,9 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.613401756890637, 
-            "longitude": 121.00984218539386 
-        } 
+            "latitude": 14.613401756890637,
+            "longitude": 121.00984218539386
+        }
     },
     "2404183QBAB6QT": {
         "order_id": "2404183QBAB6QT",
@@ -72,7 +72,7 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.609352944669665, 
+            "latitude": 14.609352944669665,
             "longitude": 121.00595052584761
         }
     },
@@ -83,7 +83,7 @@ const orders = {
             "city_province": "Quezon City, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.610736352950648, 
+            "latitude": 14.610736352950648,
             "longitude": 121.01045140783793
         }
     },
@@ -94,7 +94,7 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.611056264399304, 
+            "latitude": 14.611056264399304,
             "longitude": 121.00885918939052
         }
     },
@@ -105,7 +105,7 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.611015182339266, 
+            "latitude": 14.611015182339266,
             "longitude": 121.00659774428497
         }
     },
@@ -116,7 +116,7 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.611594472470086, 
+            "latitude": 14.611594472470086,
             "longitude": 121.00809529527533
         }
     },
@@ -127,7 +127,7 @@ const orders = {
             "city_province": "Quezon City, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.609465922645876, 
+            "latitude": 14.609465922645876,
             "longitude": 121.01090662063739
         }
     },
@@ -138,7 +138,7 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.60945989036091, 
+            "latitude": 14.60945989036091,
             "longitude": 121.01011654281938
         }
     },
@@ -149,7 +149,7 @@ const orders = {
             "city_province": "Quezon City, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.611286637196423, 
+            "latitude": 14.611286637196423,
             "longitude": 121.01161822697894
         }
     },
@@ -160,7 +160,7 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.609422625304974, 
+            "latitude": 14.609422625304974,
             "longitude": 121.00980798119298
         }
     },
@@ -171,7 +171,7 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.609115147027214, 
+            "latitude": 14.609115147027214,
             "longitude": 121.00965486760818
         }
     },
@@ -182,7 +182,7 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.609466030045485, 
+            "latitude": 14.609466030045485,
             "longitude": 121.00863372461585
         }
     },
@@ -204,7 +204,7 @@ const orders = {
             "city_province": "Quezon City, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.610355541911392, 
+            "latitude": 14.610355541911392,
             "longitude": 121.00973696912544
         }
     },
@@ -215,7 +215,7 @@ const orders = {
             "city_province": "Manila, Metro Manila"
         },
         "coordinates": {
-            "latitude": 14.610981957920876, 
+            "latitude": 14.610981957920876,
             "longitude": 121.00780442758553
         }
     }

@@ -56,6 +56,7 @@ function getNodeWithLowestFScore(openList, fScore) {
  * @returns {Number} - The distance between the current node and the neighbor.
  */
 function weight(current, neighbor) {
+    // Convert nodes to JSON objects and calculate distance using haversine formula
     current = json(current);
     neighbor = json(neighbor);
     return haversine(current.lat, current.lng, neighbor.lat, neighbor.lng);
@@ -63,6 +64,10 @@ function weight(current, neighbor) {
 
 /**
  * Implements the A* pathfinding algorithm to find the shortest path from start to goal.
+ *
+ * Pseudocode from Wikipedia
+ * https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
+ *
  * @param {Object} start - The starting node.
  * @param {Object} goal - The goal node.
  * @param {Object} graph - The graph representing the network of nodes.
@@ -89,9 +94,11 @@ function aStar(start, goal, graph) {
     while (openList.length > 0) {
         // Get the node with the lowest fScore
         const current = getNodeWithLowestFScore(openList, fScore);
+        console.log("Current node:", current);
 
         // If the current node is the goal, reconstruct and return the path
         if (current === str(goal)) {
+            console.log("Found goal node:", current);
             return [cameFrom, cameFrom[str(goal)], fScore[current]];
         }
 
@@ -116,6 +123,7 @@ function aStar(start, goal, graph) {
                 // Add the neighbor to the open list if not already present
                 if (!openList.includes(neighbor)) {
                     openList.push(neighbor);
+                    console.log("Added to open list:", neighbor);
                 }
             }
         }
@@ -124,3 +132,5 @@ function aStar(start, goal, graph) {
     // Return an empty array if no path is found
     return [];
 }
+
+

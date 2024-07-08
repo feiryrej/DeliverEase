@@ -1,5 +1,6 @@
 let map, source;
 
+// Bounds for Metro Manila area
 const METRO_MANILA_BOUNDS = {
     north: 14.7,
     south: 14.5,
@@ -7,6 +8,7 @@ const METRO_MANILA_BOUNDS = {
     east: 121.1
 }
 
+// Function to parse place data and extract coordinates
 function parsePlaceData(data) {
 	const geometry = data["geometry"]["location"];
 	const lat = geometry["lat"]();
@@ -14,6 +16,7 @@ function parsePlaceData(data) {
 	return { lat: lat, lng: lng };
 }
 
+// Function to get coordinates from address using Geocoding API
 async function getCoordinates(address) {
 	const geocoder = new google.maps.Geocoder();
 	const res = await geocoder.geocode({ "address": address });
@@ -42,6 +45,7 @@ async function initMap(address) {
 	await displayRoute(source, false);
 }
 
+// Function to set up the search box for place searching
 function setupSearchBox(map, initialValue) {
 	// Create the search box and link it to the UI element.
 	const input = document.getElementById("source-input");
@@ -56,8 +60,7 @@ function setupSearchBox(map, initialValue) {
 
 	let markers = [];
 
-	// Listen for the event fired when the user selects a prediction and retrieve
-	// more details for that place.
+	// Listen for the event fired when the user selects a prediction and retrieve more details for that place.
 	searchBox.addListener("places_changed", async () => {
 		const places = searchBox.getPlaces();
 		if (places.length == 0) return;
@@ -81,6 +84,7 @@ function setupSearchBox(map, initialValue) {
 				return;
 			}
 
+			// Create marker icon
 			const icon = {
 				url: place.icon,
 				size: new google.maps.Size(71, 71),
@@ -104,6 +108,8 @@ function setupSearchBox(map, initialValue) {
 				bounds.extend(place.geometry.location);
 			}
 		});
+
+		// Fit map bounds to include all markers
 		map.fitBounds(bounds);
 	});
 }
