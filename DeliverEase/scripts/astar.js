@@ -66,7 +66,7 @@ function weight(current, neighbor) {
  * Implements the A* pathfinding algorithm to find the shortest path from start to goal.
  *
  * Pseudocode from Wikipedia
- * https://en.wikipedia.org/wiki/A*_search_algorithm
+ * https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
  *
  * @param {Object} start - The starting node.
  * @param {Object} goal - The goal node.
