@@ -132,3 +132,5 @@ function aStar(start, goal, graph) {
     // Return an empty array if no path is found
     return [];
 }
+
+
