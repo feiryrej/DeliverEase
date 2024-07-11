@@ -71,6 +71,8 @@ DeliverEase is an innovative prototype routing system designed to streamline rou
 - Efficient routing system powered by the A* algorithm
 - Automatic map panning and zoom in/out functionality
 
+### Technologies
+
 DeliverEase utilizes a variety of technologies to ensure smooth and efficient operation:
 
 - **[React](https://reactjs.org/)**: A JavaScript library for building user interfaces.
@@ -174,6 +176,7 @@ npm run dev
 
 
 ## License
-Distributed under the [MIT]() License. See [LICENSE](LICENSE) for more information.
+
+Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License. See [LICENSE](LICENSE) for more information.
 
 <p align="right">[<a href="#readme-top">Back to top</a>]</p>
